@@ -11,12 +11,14 @@
 #include <thread>
 #include "spline.h"
 
-#ifndef HELPERS_H
-#define HELPERS_H
-
 #include <math.h>
 #include <string>
 #include <vector>
+
+#ifndef HELPERS_h
+#define HELPERS_h
+
+
 
 // for convenience
 using std::string;
@@ -333,3 +335,4 @@ int main() {
     }
     h.run();
 }
+#endif /* HELPERS_h */

@@ -105,41 +105,32 @@ using the following settings:
 
 Please (do your best to) stick to [Google's C++ style guide](https://google.github.io/styleguide/cppguide.html).
 
-## Project Instructions and Rubric
+## Project Reflection and Rubric
 
 Note: regardless of the changes you make, your project must be buildable using
 cmake and make!
 
 
-## Call for IDE Profiles Pull Requests
+### Checking the rubric points
 
-Help your fellow students!
+- [x] **The code compiles correctly.**   
+I compiled the code with make without any problem
+- [x] **The car is able to drive at least 4.32 miles without incident.**  
+ 
+![5mile](./5miles.png)
 
-We decided to create Makefiles with cmake to keep this project as platform
-agnostic as possible. Similarly, we omitted IDE profiles in order to ensure
-that students don't feel pressured to use one IDE or another.
+- [x] **The car drives according to the speed limit.**   
+No error was seen.
+- [x] **Max Acceleration and Jerk are not Exceeded.**
+Never exceeded the max acceleration
+- [x] **Car does not have collisions.**
+No collision happened
+- [x] **The car stays in its lane, except for the time between changing lanes.**
+- [x] **The car is able to change lanes**
 
-However! I'd love to help people get up and running with their IDEs of choice.
-If you've created a profile for an IDE that you think other students would
-appreciate, we'd love to have you add the requisite profile files and
-instructions to ide_profiles/. For example if you wanted to add a VS Code
-profile, you'd add:
+### Reflection
+This project consists of two codes: 1 main.cpp and helper.h. The path planing codes are in main.cpp. Lines 117-170 are for telemetry task. By using these codes, the car percept the environment for any obstacle/cars in the lanes (lines 114-125 ); and it decides whether the front car blocking it, or if changing lanes is safe by calculating the future location of the car after the movement and checking if this value is less than 30m from its instantaneous front or behind cars (lines 128-170).
 
-* /ide_profiles/vscode/.vscode
-* /ide_profiles/vscode/README.md
+After the telemetry part, car needs to reflect to the situation to maintain the safe distance (30m). This part was developed in lines 172-230. Generally, when the distance is not safe, the car needs to decide whether change its velocity or change its lane and keeping the criteria as well.
 
-The README should explain what the profile does, how to take advantage of it,
-and how to install it.
-
-Frankly, I've never been involved in a project with multiple IDE profiles
-before. I believe the best way to handle this would be to keep them out of the
-repo root to avoid clutter. My expectation is that most profiles will include
-instructions to copy files to a new location to get picked up by the IDE, but
-that's just a guess.
-
-One last note here: regardless of the IDE used, every submitted project must
-still be compilable with cmake and make./
-
-## How to write a README
-A well written README file can enhance your project and portfolio.  Develop your abilities to create professional README files by completing [this free course](https://www.udacity.com/course/writing-readmes--ud777).
-
+In the next step, our car needs to plan for its trajectory (lines 232-297). First all the points were transform to the car coordinates. The 3 Fernet points in far distance (30m from each other) and the last 2 points of previous trajectory (lines 228-235) were selected to fit a spline for predicting the trajectory for the car. 
